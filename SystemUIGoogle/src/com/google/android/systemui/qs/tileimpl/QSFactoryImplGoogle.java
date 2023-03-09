@@ -56,6 +56,31 @@ import com.google.android.systemui.qs.tiles.ReverseChargingTile;
 
 // Custom
 import com.android.systemui.qs.tiles.PowerShareTile;
+import com.android.systemui.qs.tiles.CaffeineTile;
+import com.android.systemui.qs.tiles.CompassTile;
+import com.android.systemui.qs.tiles.HeadsUpTile;
+import com.android.systemui.qs.tiles.RebootTile;
+import com.android.systemui.qs.tiles.DataSwitchTile;
+import com.android.systemui.qs.tiles.VolumeTile;
+import com.android.systemui.qs.tiles.UsbTetherTile;
+import com.android.systemui.qs.tiles.VpnTile;
+import com.android.systemui.qs.tiles.VPNTetheringTile;
+import com.android.systemui.qs.tiles.ScreenshotTile;
+import com.android.systemui.qs.tiles.SleepModeTile;
+import com.android.systemui.qs.tiles.SmartPixelsTile;
+import com.android.systemui.qs.tiles.SoundSearchTile;
+import com.android.systemui.qs.tiles.SoundTile;
+import com.android.systemui.qs.tiles.SyncTile;
+import com.android.systemui.qs.tiles.LocaleTile;
+import com.android.systemui.qs.tiles.DcDimmingTile;
+import com.android.systemui.qs.tiles.AmbientDisplayTile;
+import com.android.systemui.qs.tiles.AntiFlickerTile;
+import com.android.systemui.qs.tiles.AODTile;
+import com.android.systemui.qs.tiles.AutoBrightnessTile;
+import com.android.systemui.qs.tiles.NavBarTile;
+import com.android.systemui.qs.tiles.ReadingModeTile;
+import com.android.systemui.qs.tiles.LiveDisplayTile;
+import com.android.systemui.qs.tiles.PreferredNetworkTile;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -88,6 +113,7 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
             Provider<BatterySaverTileGoogle> batterySaverTileGoogleProvider,
             Provider<DataSaverTile> dataSaverTileProvider,
             Provider<NightDisplayTile> nightDisplayTileProvider,
+            Provider<NavBarTile> navBarTileProvider,
             Provider<NfcTile> nfcTileProvider,
             Provider<GarbageMonitor.MemoryTile> memoryTileProvider,
             Provider<UiModeNightTile> uiModeNightTileProvider,
@@ -102,8 +128,32 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
             Provider<OneHandedModeTile> oneHandedModeTileProvider,
             Provider<ColorCorrectionTile> colorCorrectionTileProvider,
             Provider<DreamTile> dreamTileProvider,
-            Provider<ReverseChargingTile> reverseChargingTileProvider,
-            Provider<PowerShareTile> powerShareTileProvider) {
+            Provider<CaffeineTile> caffeineTileProvider,
+            Provider<CompassTile> compassTileProvider,
+            Provider<UsbTetherTile> usbTetherTileProvider,
+            Provider<DataSwitchTile> dataSwitchTileProvider,
+            Provider<PowerShareTile> powerShareTileProvider,
+            Provider<HeadsUpTile> headsUpTileProvider,
+            Provider<SyncTile> syncTileProvider,
+            Provider<AmbientDisplayTile> ambientDisplayTileProvider,
+            Provider<RebootTile> rebootTileProvider,
+            Provider<AODTile> aodTileProvider,
+            Provider<SoundSearchTile> soundSearchTileProvider,
+            Provider<SoundTile> soundTileProvider,
+            Provider<VpnTile> vpnTileProvider,
+            Provider<AutoBrightnessTile> autoBrightnessTileProvider,
+            Provider<VolumeTile> volumeTileProvider,
+            Provider<SleepModeTile> sleepModeTileProvider,
+            Provider<PreferredNetworkTile> preferredNetworkTileProvider,
+            Provider<ScreenshotTile> screenshotTileProvider,
+            Provider<VPNTetheringTile> vpnTetheringTileProvider,
+            Provider<DcDimmingTile> dcDimTileProvider,
+            Provider<LiveDisplayTile> liveDisplayTileProvider,
+            Provider<AntiFlickerTile> antiFlickerTileProvider,
+            Provider<ReadingModeTile> readingModeTileProvider,
+            Provider<SmartPixelsTile> smartPixelsTileProvider,
+            Provider<LocaleTile> localeTileProvider,
+            Provider<ReverseChargingTile> reverseChargingTileProvider) {
         super(qsHostLazy,
                 customTileBuilderProvider,
                 wifiTileProvider,
@@ -122,6 +172,7 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
                 () -> batterySaverTileGoogleProvider.get(),
                 dataSaverTileProvider,
                 nightDisplayTileProvider,
+                navBarTileProvider,
                 nfcTileProvider,
                 memoryTileProvider,
                 uiModeNightTileProvider,
@@ -136,7 +187,31 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
                 oneHandedModeTileProvider,
                 colorCorrectionTileProvider,
                 dreamTileProvider,
-                powerShareTileProvider);
+                caffeineTileProvider,
+                compassTileProvider,
+                usbTetherTileProvider,
+                dataSwitchTileProvider,
+                powerShareTileProvider,
+                headsUpTileProvider,
+                syncTileProvider,
+                ambientDisplayTileProvider,
+                rebootTileProvider,
+                aodTileProvider,
+                soundSearchTileProvider,
+                soundTileProvider,
+                vpnTileProvider,
+                autoBrightnessTileProvider,
+                volumeTileProvider,
+                sleepModeTileProvider,
+                preferredNetworkTileProvider,
+                screenshotTileProvider,
+                vpnTetheringTileProvider,
+                dcDimTileProvider,
+                liveDisplayTileProvider,
+                antiFlickerTileProvider,
+                readingModeTileProvider,
+                smartPixelsTileProvider,
+                localeTileProvider);
         mReverseChargingTileProvider = reverseChargingTileProvider;
         mBatterySaverTileGoogleProvider = batterySaverTileGoogleProvider;
     }
