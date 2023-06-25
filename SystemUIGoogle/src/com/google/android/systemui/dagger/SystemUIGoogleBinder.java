@@ -16,7 +16,7 @@
 
 package com.google.android.systemui.dagger;
 
-import com.google.android.systemui.keyguard.dagger.ZephyrusKeyguardModule;
+import com.android.systemui.keyguard.dagger.KeyguardModule;
 import com.android.systemui.recents.RecentsModule;
 import com.google.android.systemui.statusbar.dagger.CentralSurfacesGoogleModule;
 import com.google.android.systemui.columbus.dagger.ColumbusBinderModule;
@@ -29,7 +29,7 @@ import dagger.Module;
 @Module(includes = {
         RecentsModule.class,
         CentralSurfacesGoogleModule.class,
-        ZephyrusKeyguardModule.class,
+        KeyguardModule.class,
         ColumbusBinderModule.class,
 })
 public abstract class SystemUIGoogleBinder {
