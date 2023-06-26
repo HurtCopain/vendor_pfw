@@ -77,10 +77,9 @@ import com.android.systemui.qs.tiles.AmbientDisplayTile;
 import com.android.systemui.qs.tiles.AntiFlickerTile;
 import com.android.systemui.qs.tiles.AODTile;
 import com.android.systemui.qs.tiles.AutoBrightnessTile;
-import com.android.systemui.qs.tiles.NavBarTile;
-import com.android.systemui.qs.tiles.ReadingModeTile;
-import com.android.systemui.qs.tiles.LiveDisplayTile;
 import com.android.systemui.qs.tiles.PreferredNetworkTile;
+import com.android.systemui.qs.tiles.RefreshRateTile;
+
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -137,6 +136,7 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
             Provider<SyncTile> syncTileProvider,
             Provider<AmbientDisplayTile> ambientDisplayTileProvider,
             Provider<RebootTile> rebootTileProvider,
+            Provider<RefreshRateTile> refreshRateTileProvider,
             Provider<AODTile> aodTileProvider,
             Provider<SoundSearchTile> soundSearchTileProvider,
             Provider<SoundTile> soundTileProvider,
@@ -148,9 +148,6 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
             Provider<ScreenshotTile> screenshotTileProvider,
             Provider<VPNTetheringTile> vpnTetheringTileProvider,
             Provider<DcDimmingTile> dcDimTileProvider,
-            Provider<LiveDisplayTile> liveDisplayTileProvider,
-            Provider<AntiFlickerTile> antiFlickerTileProvider,
-            Provider<ReadingModeTile> readingModeTileProvider,
             Provider<SmartPixelsTile> smartPixelsTileProvider,
             Provider<LocaleTile> localeTileProvider,
             Provider<ReverseChargingTile> reverseChargingTileProvider) {
@@ -196,6 +193,7 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
                 syncTileProvider,
                 ambientDisplayTileProvider,
                 rebootTileProvider,
+                refreshRateTileProvider,
                 aodTileProvider,
                 soundSearchTileProvider,
                 soundTileProvider,
@@ -206,12 +204,10 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
                 preferredNetworkTileProvider,
                 screenshotTileProvider,
                 vpnTetheringTileProvider,
-                dcDimTileProvider,
-                liveDisplayTileProvider,
-                antiFlickerTileProvider,
-                readingModeTileProvider,
                 smartPixelsTileProvider,
-                localeTileProvider);
+                localeTileProvider,
+                dcDimTileProvider);
+                
         mReverseChargingTileProvider = reverseChargingTileProvider;
         mBatterySaverTileGoogleProvider = batterySaverTileGoogleProvider;
     }
