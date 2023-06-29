@@ -16,12 +16,6 @@
 
 package com.google.android.systemui.qs.tileimpl;
 
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
-
 import com.android.systemui.dagger.SysUISingleton;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSHost;
@@ -35,8 +29,8 @@ import com.android.systemui.qs.tiles.AmbientDisplayTile;
 import com.android.systemui.qs.tiles.AODTile;
 import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
-import com.android.systemui.qs.tiles.CameraToggleTile;
 import com.android.systemui.qs.tiles.CaffeineTile;
+import com.android.systemui.qs.tiles.CameraToggleTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorCorrectionTile;
@@ -48,6 +42,7 @@ import com.android.systemui.qs.tiles.DeviceControlsTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.DreamTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
+import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.InternetTile;
 import com.android.systemui.qs.tiles.LocaleTile;
@@ -56,6 +51,7 @@ import com.android.systemui.qs.tiles.MicrophoneToggleTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.OneHandedModeTile;
+import com.android.systemui.qs.tiles.PowerShareTile;
 import com.android.systemui.qs.tiles.QRCodeScannerTile;
 import com.android.systemui.qs.tiles.PreferredNetworkTile;
 import com.android.systemui.qs.tiles.QuickAccessWalletTile;
@@ -81,7 +77,7 @@ import com.android.systemui.util.leak.GarbageMonitor;
 import com.google.android.systemui.qs.tiles.BatterySaverTileGoogle;
 import com.google.android.systemui.qs.tiles.ReverseChargingTile;
 
-// Custom
+
 import com.android.systemui.qs.tiles.PowerShareTile;
 
 import javax.inject.Inject;
@@ -104,7 +100,7 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
             Provider<BluetoothTile> bluetoothTileProvider,
             Provider<CellularTile> cellularTileProvider,
             Provider<DndTile> dndTileProvider,
-            Provider<ColorCorrectionTile> ColorCorrectionTileProvider,
+            Provider<ColorCorrectionTile> colorCorrectionTileProvider,
             Provider<ColorInversionTile> colorInversionTileProvider,
             Provider<AirplaneModeTile> airplaneModeTileProvider,
             Provider<WorkModeTile> workModeTileProvider,
@@ -128,32 +124,30 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
             Provider<QuickAccessWalletTile> quickAccessWalletTileProvider,
             Provider<QRCodeScannerTile> qrCodeScannerTileProvider,
             Provider<OneHandedModeTile> oneHandedModeTileProvider,
-            Provider<ColorCorrectionTile> colorCorrectionTileProvider,
             Provider<DreamTile> dreamTileProvider,
-            Provider<AmbientDisplayTile> AmbientDisplayTileProvider,
-            Provider<CaffeineTile> CaffeineTileProvider,
-            Provider<CompassTile> CompassTileProvider,
-            Provider<HeadsUpTile> HeadsUpTileProvider,
-            Provider<SyncTile> SyncTileProvider,
-            Provider<PowerShareTile> PowerShareTileProvider,
-            Provider<UsbTetherTile> UsbTetherTileProvider,
-            Provider<AODTile> AODTileProvider,
-            Provider<VpnTile> VpnTileProvider,
-            Provider<VPNTetheringTile> VPNTetheringTileProvider,
-            Provider<DataSwitchTile> DataSwitchTileProvider,
-            Provider<RebootTile> RebootTileProvider,
-            Provider<RefreshRateTile> RefreshRateTileProvider,
-            Provider<AutoBrightnessTile> AutoBrightnessTileProvider,
-            Provider<ScreenshotTile> ScreenshotTileProvider,
-            Provider<SoundTile> SoundTileProvider,
-            Provider<VolumeTile> VolumeTileProvider,
-            Provider<LocaleTile> LocaleTileProvider,
-            Provider<SmartPixelsTile> SmartPixelsTileProvider,
-            Provider<PreferredNetworkTile> PreferredNetworkTileProvider,
-            Provider<SleepModeTile> SleepModeTileProvider,
-            Provider<DcDimmingTile> DcDimmingTileProvider,
-            Provider<ReverseChargingTile> reverseChargingTileProvider,
-            Provider<PowerShareTile> powerShareTileProvider) {
+            Provider<CompassTile> compassTileProvider,
+            Provider<AmbientDisplayTile> ambientDisplayTileProvider,
+            Provider<CaffeineTile> caffeineTileProvider,
+            Provider<HeadsUpTile> headsUpTileProvider,
+            Provider<PowerShareTile> powerShareTileProvider,
+            Provider<SyncTile> syncTileProvider,
+            Provider<UsbTetherTile> usbTetherTileProvider,
+            Provider<AODTile> aodTileProvider,
+            Provider<VpnTile> vpnTileProvider,
+            Provider<VPNTetheringTile> vpnTetheringTileProvider,
+            Provider<DataSwitchTile> dataSwitchTileProvider,
+            Provider<RebootTile> rebootTileProvider,
+            Provider<RefreshRateTile> refreshRateTileProvider,
+            Provider<AutoBrightnessTile> autoBrightnessTileProvider,
+            Provider<ScreenshotTile> screenshotTileProvider,
+            Provider<SoundTile> soundTileProvider,
+            Provider<VolumeTile> volumeTileProvider,
+            Provider<LocaleTile> localeTileProvider,
+            Provider<SmartPixelsTile> smartPixelsTileProvider,
+            Provider<PreferredNetworkTile> preferredNetworkTileProvider,
+            Provider<SleepModeTile> sleepModeTileProvider,
+            Provider<DcDimmingTile> dcDimmingTileProvider,
+            Provider<ReverseChargingTile> reverseChargingTileProvider) {
         super(qsHostLazy,
                 customTileBuilderProvider,
                 wifiTileProvider,
@@ -207,8 +201,7 @@ public class QSFactoryImplGoogle extends QSFactoryImpl {
                 smartPixelsTileProvider,
                 preferredNetworkTileProvider,
                 sleepModeTileProvider,
-                dcDimTileProvider,
-                powerShareTileProvider);
+                dcDimmingTileProvider);
         mReverseChargingTileProvider = reverseChargingTileProvider;
         mBatterySaverTileGoogleProvider = batterySaverTileGoogleProvider;
     }
