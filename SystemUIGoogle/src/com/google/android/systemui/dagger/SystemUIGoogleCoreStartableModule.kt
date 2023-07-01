@@ -172,6 +172,11 @@ abstract class SystemUIGoogleCoreStartableModule {
     @ClassKey(SystemActions::class)
     abstract fun bindSystemActions(sysui: SystemActions): CoreStartable
 
+    /** Inject into ThemeOverlayController.  */
+    @Binds
+    @IntoMap
+    @ClassKey(ThemeOverlayController::class)
+    abstract fun bindThemeOverlayController(sysui: ThemeOverlayController): CoreStartable
 
     /** Inject into ToastUI.  */
     @Binds
